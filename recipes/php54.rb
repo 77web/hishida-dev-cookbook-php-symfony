@@ -16,7 +16,7 @@ execute "disable remi & epel repository by default" do
 end
 
 execute "install php from remi" do
-  command 'yum -y install --enablerepo=remi php php-cli php-gd php-mysql php-xml php-mbstring php-devel php-pear'
+  command 'yum -y install --enablerepo=remi php php-cli php-gd php-mysql php-xml php-mbstring php-devel'
 end
 
 execute "install icu4.4+ from source" do
@@ -24,5 +24,5 @@ execute "install icu4.4+ from source" do
 end
 
 execute "install php-intl to link icu4.4+" do
-  command 'export LD_LIBRARY_PATH=/var/local/lib; pecl install intl'
+  command 'cd /var/www; wget http://pecl.php.net/get/intl-3.0.0.tgz; tar -zxf intl-3.0.0.tgz; cd intl-3.0.0; phpize; ./configure --with-icu-dir=/var/local; make; make install'
 end
