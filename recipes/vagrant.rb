@@ -33,3 +33,10 @@ execute "sf2 project init" do
   end
 end
 
+execute "install phpunit if sf2" do
+  command 'cd /var/www/project; wget https://phar.phpunit.de/phpunit.phar'
+  only_if do
+    File.exists?('/var/www/project/app/console')
+  end
+end
+
