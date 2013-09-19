@@ -27,7 +27,7 @@ execute "sf1 project init" do
 end
 
 execute "sf2 project init" do
-  command 'cd /var/www/project; php app/console doctrine:database:create; php app/console doctrine:schema:create'
+  command 'cd /var/www/project; php app/console doctrine:database:drop --force; php app/console doctrine:database:create; php app/console doctrine:schema:create'
   only_if do
     File.exists?('/var/www/project/app/console') && File.exists?('/var/www/project/app/config/parameters.yml')
   end
